@@ -1,0 +1,10 @@
+# Authors are declared here rather than inline in a post, because the blog is
+# configured to reject inline authors: a typo in a name should fail the build
+# instead of quietly creating a second author page.
+
+dirthara:
+  name: Dirthara
+  title: Maintainers
+  url: https://github.com/dirthara
+  image_url: https://github.com/dirthara.png
+  page: false

@@ -1,0 +1,31 @@
+{
+  "$comment": "Every package and version the site is built from. This is the only file you edit to add a package or open a documentation version; scripts/pull-docs.mjs does the rest.",
+
+  "packages": {
+    "database": {
+      "repo": "https://github.com/dirthara/database.git",
+      "label": "Database",
+      "position": 1,
+      "description": "A thin PDO layer with named connections, a query builder, forward-only results, and nested transactions."
+    },
+    "schema": {
+      "repo": "https://github.com/dirthara/schema.git",
+      "label": "Schema",
+      "position": 2,
+      "description": "Describe a table once and compile the DDL for MySQL, PostgreSQL, SQLite or SQL Server."
+    }
+  },
+
+  "versions": [
+    {
+      "name": "dev",
+      "label": "dev",
+      "current": true,
+      "banner": "unreleased",
+      "packages": {
+        "database": { "ref": "0.1" },
+        "schema": { "ref": "0.1" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.idea/
+node_modules/
+.docusaurus/
+build/
+
+# Pulled from the package repositories at build time by scripts/pull-docs.mjs.
+# The markdown lives in the package that owns it; nothing here is a source file.
+.sources/
+content/
+versioned_docs/
+versioned_sidebars/
+versions.json

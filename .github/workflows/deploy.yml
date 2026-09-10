@@ -1,0 +1,67 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+  # The documentation lives in the package repositories, so it changes without
+  # a commit here and nothing would otherwise rebuild the site. Until each
+  # package dispatches an event on merge, a nightly build is what keeps the
+  # published pages current.
+  schedule:
+    - cron: '17 5 * * *'
+
+  workflow_dispatch:
+
+# One deployment at a time, and never cancel one in flight: a half-published
+# site is worse than a slightly stale one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build and start the build environment
+        run: LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose up -d --build docusaurus
+
+      - name: Install dependencies
+        run: docker compose exec -T docusaurus npm ci
+
+      - name: Pull the package documentation
+        run: docker compose exec -T docusaurus npm run pull
+
+      - name: Build the site
+        run: docker compose exec -T docusaurus npm run build
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

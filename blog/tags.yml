@@ -1,0 +1,12 @@
+# As with authors, tags are declared rather than invented per post, so the tag
+# list stays a short controlled vocabulary.
+
+release:
+  label: Release
+  permalink: /release
+  description: A new version of a Dirthara package.
+
+documentation:
+  label: Documentation
+  permalink: /documentation
+  description: Changes to the documentation itself.

@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# A push to a branch with an open pull request triggers both events. Grouping by
+# ref keeps only the newest run of each.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+
+      # CI builds in the image the README tells you to develop in, so a green
+      # run here means the same commands pass on a maintainer's machine. The
+      # alternative — a bare setup-node on the runner — drifts from the image,
+      # and the drift only ever shows up here.
+      - name: Build and start the development environment
+        run: LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose up -d --build docusaurus
+
+      - name: Report the build environment
+        run: |
+          docker compose exec -T docusaurus node --version
+          docker compose exec -T docusaurus npm --version
+          docker compose exec -T docusaurus git --version
+
+      - name: Install dependencies
+        run: docker compose exec -T docusaurus npm ci
+
+      # Reaches out to every package repository listed in sources.json. A
+      # deleted branch or a renamed docs directory fails here, which is the
+      # point: the site would otherwise publish a version with a package
+      # silently missing from it.
+      - name: Pull the package documentation
+        run: docker compose exec -T docusaurus npm run pull
+
+      # Broken links and broken anchors are configured to throw, so this step
+      # also checks every relative link the package repositories wrote.
+      - name: Build the site
+        run: docker compose exec -T docusaurus npm run build
+
+  # The one check branch protection requires. It stays green only when every job
+  # above succeeded, so jobs can be added without touching branch protection.
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ always() }}
+    steps:
+      - name: Verify that every job succeeded
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped') }}
+        run: exit 1

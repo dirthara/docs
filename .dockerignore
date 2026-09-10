@@ -1,0 +1,10 @@
+.git
+.idea
+node_modules
+.docusaurus
+build
+.sources
+content
+versioned_docs
+versioned_sidebars
+versions.json

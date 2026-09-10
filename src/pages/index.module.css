@@ -1,0 +1,36 @@
+.hero {
+    padding: 4rem 0 3rem;
+    text-align: center;
+}
+
+.logo {
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    margin-bottom: 0.5rem;
+    font-size: 3.5rem;
+}
+
+.tagline {
+    margin: 0 auto 2rem;
+    max-width: 34rem;
+    font-size: 1.25rem;
+    color: var(--ifm-color-emphasis-700);
+}
+
+@media (max-width: 996px) {
+    .hero {
+        padding: 2.5rem 0 1.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+}
