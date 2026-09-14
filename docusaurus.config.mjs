@@ -176,7 +176,12 @@ const config = {
                             .sort(([, a], [, b]) => (a.position ?? 99) - (b.position ?? 99))
                             .map(([name, pkg]) => ({
                                 label: pkg.label ?? name,
-                                to: `/${currentVersion.name}/${name}`,
+                                // Every package opens on `docs/intro.md`, which
+                                // the package template ships from the first
+                                // commit. The category path is not a link: it
+                                // only resolves for a package that happens to
+                                // carry a page named after itself.
+                                to: `/${currentVersion.name}/${name}/intro`,
                             })),
                     },
                     {

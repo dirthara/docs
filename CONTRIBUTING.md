@@ -38,6 +38,12 @@ So:
   [`sources.json`](sources.json) here.
 - **Anything about how the documentation looks or is assembled** is a change
   here: the theme, the landing page, the pull script, the workflows.
+- **A convention every package's `docs` directory follows** is a change to
+  [`dirthara/package-template`](https://github.com/dirthara/package-template),
+  and to the packages already copied from it. Every package is scaffolded from
+  that repository, so the front matter, the `_category_.json` files, and the
+  link style this site depends on are decided there. Changing them here would
+  only paper over the packages that still ship the old shape.
 
 Release notes are the exception. They describe releases across packages rather
 than any one package, so they live in [`blog`](blog).

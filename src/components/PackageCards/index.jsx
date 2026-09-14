@@ -10,6 +10,10 @@ const currentVersion = sources.versions.find((version) => version.current);
  * A card per package, ordered and described by sources.json. Adding a package
  * to the manifest adds it here, so the landing page cannot fall out of step
  * with what the site actually builds.
+ *
+ * Each card opens the package's `intro` page rather than its category path,
+ * because every package is scaffolded with a `docs/intro.md` and none of them
+ * is guaranteed a page at the category path itself.
  */
 export default function PackageCards() {
     const packages = Object.entries(sources.packages).sort(
@@ -24,7 +28,7 @@ export default function PackageCards() {
                         <div className={clsx('col', 'col--6')} key={name}>
                             <Link
                                 className={styles.card}
-                                to={`/${currentVersion.name}/${name}`}
+                                to={`/${currentVersion.name}/${name}/intro`}
                             >
                                 <h2 className={styles.cardTitle}>{pkg.label ?? name}</h2>
                                 <p className={styles.cardDescription}>{pkg.description}</p>

@@ -12,6 +12,13 @@ Every package writes its own usage documentation as markdown under its `docs`
 directory; `scripts/pull-docs.mjs` collects those directories at the refs
 [`sources.json`](sources.json) pins and lays them out for Docusaurus.
 
+Packages do not invent that layout. Each one is scaffolded from
+[`dirthara/package-template`](https://github.com/dirthara/package-template),
+whose `agents/documentation.md` fixes the front matter, the `_category_.json`
+files, and the relative-link style the build validates. A change to those
+conventions belongs in the template and in the packages copied from it, never
+here.
+
 Never commit pulled markdown. `content`, `versioned_docs`, `versioned_sidebars`,
 `versions.json`, and `.sources` are generated and ignored. A page that needs
 changing is changed in the package that owns it.

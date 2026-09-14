@@ -13,6 +13,24 @@
       "label": "Schema",
       "position": 2,
       "description": "Describe a table once and compile the DDL for MySQL, PostgreSQL, SQLite or SQL Server."
+    },
+    "collection": {
+      "repo": "https://github.com/dirthara/collection.git",
+      "label": "Collection",
+      "position": 3,
+      "description": "Ordered collections with integer or string keys, in a mutable and an immutable variant."
+    },
+    "entity": {
+      "repo": "https://github.com/dirthara/entity.git",
+      "label": "Entity",
+      "position": 4,
+      "description": "Map a class to a table with attributes, then read and write it through a typed store."
+    },
+    "migration": {
+      "repo": "https://github.com/dirthara/migration.git",
+      "label": "Migration",
+      "position": 5,
+      "description": "Versioned schema changes over Database and Schema. A scaffold; no public API yet."
     }
   },
 
@@ -24,7 +42,10 @@
       "banner": "unreleased",
       "packages": {
         "database": { "ref": "0.1" },
-        "schema": { "ref": "0.1" }
+        "schema": { "ref": "0.1" },
+        "collection": { "ref": "0.1" },
+        "entity": { "ref": "0.1" },
+        "migration": { "ref": "0.1" }
       }
     }
   ]

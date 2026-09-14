@@ -81,7 +81,7 @@ every version that should carry it:
     "cache": {
       "repo": "https://github.com/dirthara/cache.git",
       "label": "Cache",
-      "position": 3,
+      "position": 6,
       "description": "One sentence, shown on the landing page and the category index."
     }
   },
@@ -96,6 +96,37 @@ every version that should carry it:
 index. Nothing else needs to change: the sidebar is generated from what the pull
 script lays down, and each page orders itself by the `sidebar_position` in its
 own front matter.
+
+The card and the footer link open the package's `intro` page, which every
+package ships. They do not link the category path: that only resolves for a
+package that happens to carry a page named after itself, the way `database` does
+with `database.md`.
+
+## The package template
+
+Every Dirthara package begins as a copy of
+[`dirthara/package-template`](https://github.com/dirthara/package-template),
+which carries the Docker development environment, the Mago and PHPUnit
+configuration, the CI workflow and its coverage gate, the branch-per-version
+contributing rules, and a `docs` directory already laid out for this site. Its
+`TEMPLATE.md` walks through creating a package; registering it in
+[`sources.json`](sources.json) is the last step.
+
+That is why a new package needs nothing here but a manifest entry. The
+conventions the pull script and the build rely on — front matter carrying `id`,
+`title`, `sidebar_position`, and `description` on every page, a
+`_category_.json` in every subdirectory, relative links that keep their `.md`
+extension, MDX-safe prose — are written down in the template's
+`agents/documentation.md` and inherited by every package copied from it. A
+package ships a `docs/intro.md` and a `docs/installation.md` from its first
+commit, so it can be published before it has an API.
+
+The template is not a package and is never added to the manifest: its
+documentation still holds the placeholders the init script fills in. Because the
+scaffold is copied rather than inherited, a change to those conventions has to
+be made in the template and carried into the packages already copied from it —
+otherwise the next package starts from the old shape and this site is what
+notices.
 
 ## Opening a documentation version
 
