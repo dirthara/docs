@@ -10,3 +10,28 @@ documentation:
   label: Documentation
   permalink: /documentation
   description: Changes to the documentation itself.
+
+entity:
+  label: Entity
+  permalink: /entity
+  description: Entity related changes and posts.
+
+database:
+  label: Database
+  permalink: /database
+  description: Database related changes and posts.
+
+query_builder:
+  label: Query Builder
+  permalink: /query-builder
+  description: Query Builder related changes and posts.
+
+entity_builder:
+  label: Entity Builder
+  permalink: /entity-builder
+  description: Entity Builder related changes and posts.
+
+relations:
+  label: Relations
+  permalink: /relations
+  description: Relations related changes and posts.
