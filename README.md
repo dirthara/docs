@@ -81,7 +81,7 @@ every version that should carry it:
     "cache": {
       "repo": "https://github.com/dirthara/cache.git",
       "label": "Cache",
-      "position": 6,
+      "position": 8,
       "description": "One sentence, shown on the landing page and the category index."
     }
   },
@@ -101,6 +101,12 @@ The card and the footer link open the package's `intro` page, which every
 package ships. They do not link the category path: that only resolves for a
 package that happens to carry a page named after itself, the way `database` does
 with `database.md`.
+
+A card also carries `composer require dirthara/<name>`. Set `"composer": false`
+on the entry to leave that line off, for something the site documents that
+Composer has never heard of — `coding-standards` is the ruleset the packages are
+written to rather than a package you install, and pins `main` rather than a
+release branch for the same reason.
 
 ## The package template
 

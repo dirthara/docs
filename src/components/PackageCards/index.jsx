@@ -14,6 +14,11 @@ const currentVersion = sources.versions.find((version) => version.current);
  * Each card opens the package's `intro` page rather than its category path,
  * because every package is scaffolded with a `docs/intro.md` and none of them
  * is guaranteed a page at the category path itself.
+ *
+ * An entry with `"composer": false` in the manifest gets no install line. Not
+ * everything the site documents is a Composer package, and a card offering a
+ * `composer require` for something Composer has never heard of is worse than
+ * no card at all.
  */
 export default function PackageCards() {
     const packages = Object.entries(sources.packages).sort(
@@ -32,9 +37,11 @@ export default function PackageCards() {
                             >
                                 <h2 className={styles.cardTitle}>{pkg.label ?? name}</h2>
                                 <p className={styles.cardDescription}>{pkg.description}</p>
-                                <code className={styles.cardInstall}>
-                                    composer require dirthara/{name}
-                                </code>
+                                {pkg.composer !== false && (
+                                    <code className={styles.cardInstall}>
+                                        composer require dirthara/{name}
+                                    </code>
+                                )}
                             </Link>
                         </div>
                     ))}

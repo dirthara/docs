@@ -31,6 +31,20 @@
       "label": "Migration",
       "position": 5,
       "description": "Versioned schema changes over Database and Schema. A scaffold; no public API yet."
+    },
+    "http": {
+      "repo": "https://github.com/dirthara/http.git",
+      "label": "Http",
+      "position": 6,
+      "description": "HTTP for the Dirthara framework. A scaffold; no public API yet."
+    },
+    "coding-standards": {
+      "$comment": "Not a Composer package and not released per version: it is the ruleset the packages are written to, so it has one branch and every version pins main.",
+      "repo": "https://github.com/dirthara/coding-standards.git",
+      "composer": false,
+      "label": "Coding Standards",
+      "position": 7,
+      "description": "The rules every Dirthara package is written to: style, naming, testing, security, and what ships."
     }
   },
 
@@ -45,7 +59,9 @@
         "schema": { "ref": "0.1" },
         "collection": { "ref": "0.1" },
         "entity": { "ref": "0.1" },
-        "migration": { "ref": "0.1" }
+        "migration": { "ref": "0.1" },
+        "http": { "ref": "0.1" },
+        "coding-standards": { "ref": "main" }
       }
     }
   ]

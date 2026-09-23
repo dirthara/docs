@@ -1,6 +1,7 @@
 ---
 title: Explaining Dirthara Entities
 authors: [dirthara]
+draft: true
 tags: [entity, entity_builder, database, documentation]
 ---
 
@@ -12,6 +13,8 @@ when plain PHP is all you need. _Inspired by magic, built without it_ is our tag
 The entity package is perhaps the best example of this philosophy. Entities in Dirthara are just plain PHP classes.
 No base class to extend, no interface to implement, no magic methods, and all your properties defined on the class. The
 only things you explicitly need to tell Dirthara are things that cannot be inferred from the code itself.
+
+{/* truncate */}
 
 ## Defining Entities
 

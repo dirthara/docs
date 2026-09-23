@@ -1,6 +1,7 @@
 ---
 title: Explaining Dirthara Entity Relations
 authors: [dirthara]
+draft: true
 tags: [entity, relations, database, documentation]
 ---
 
@@ -17,6 +18,8 @@ these using four relation types: `HasOne`, `HasMany`, `BelongsToOne`, and `Belon
 familiar if you've used other frameworks before, and that, again, is deliberate. We've chosen to use the terminology 
 from the perspective of the code, not the database, just like we did with the Entity Query when it comes to properties 
 and values.
+
+{/* truncate */}
 
 Let's take a look at an example. Let's expand the Post entity from the previous article and add a relation for
 each of the four relation types.
